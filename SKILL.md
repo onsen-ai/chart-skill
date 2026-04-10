@@ -51,12 +51,31 @@ Check `~/.chart-skill/config.json` for saved preferences. If it doesn't exist, u
 ## Workflow for Papers
 
 1. **Receive data** — from query results, CSV, user-provided, or inline
-2. **Write a YAML spec file** — save to a `.yaml` file
-3. **Render** — `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs --spec chart.yaml --output ./figures/chart.svg`
+2. **Write a YAML spec** — either save to a `.yaml` file or pass inline
+3. **Render** — one of:
+   - From file: `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs --spec chart.yaml --output ./figures/chart.svg`
+   - Inline: `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs --yaml 'mark: bar ...' --output ./figures/chart.svg`
 4. **Embed in markdown** — `![Chart title](./figures/chart.svg)`
-5. **Iterate** — edit the YAML, re-render
+5. **Iterate** — edit the spec, re-render
 
-The render script prints the output path to stdout. Use `--quiet` to suppress progress messages.
+The render script prints the absolute output path to **stdout** (for programmatic use). Progress messages go to stderr. Use `--quiet` to suppress progress messages.
+
+**All CLI flags:**
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--spec PATH` | — | Path to YAML Vega-Lite spec file |
+| `--yaml STRING` | — | Inline YAML spec (alternative to --spec) |
+| `--theme NAME` | `onsen` | Theme name (see Available Themes) |
+| `--variant NAME` | `light` | `light` or `dark` |
+| `--size NAME` | `desktop` | `desktop` (728px) or `mobile` (600px) |
+| `--output PATH` | auto | Output file path |
+| `--output-dir DIR` | `.` | Output directory |
+| `--width N` | from size | Override width in pixels |
+| `--height N` | from size | Override height in pixels |
+| `--all-variants` | false | Render all 4 combos (light/dark x desktop/mobile) |
+| `--list-themes` | — | List available themes and exit |
+| `--quiet` | false | Print only output path(s) to stdout |
 
 ## Writing Chart Specs
 
@@ -219,12 +238,19 @@ These are applied by default — you don't need to specify them:
 
 ## Available Themes
 
-| Theme | Style | Best for |
-|-------|-------|----------|
-| `onsen` | Blue primary, warm palette | Product/marketing content |
-| `neutral` | Grayscale | Academic papers, formal reports |
+| Theme | Flag | Primary Color | Style | Best for |
+|-------|------|---------------|-------|----------|
+| Onsen | `--theme onsen` | Blue `#4d93e5` | Warm, friendly | Product dashboards, blog posts |
+| Neutral | `--theme neutral` | Grey `#374151` | Clean grayscale | Academic papers, formal reports |
+| Bain | `--theme bain` | Red `#CC0000` | Bold red + greys | Strategy consulting decks |
+| McKinsey | `--theme mckinsey` | Blue `#1c3cdf` | Deep blue | Executive presentations |
+| BCG | `--theme bcg` | Green `#29BA74` | Fresh green | Sustainability, growth reports |
+| Holland & Barrett | `--theme holland-barrett` | Green `#1B5E20` | Forest green + gold | Health, wellness, retail |
+| Economist | `--theme economist` | Red `#E3120B` | Red + teal | Data journalism, editorials |
+| FT | `--theme ft` | Teal `#0D7680` | Teal on salmon | Financial reporting |
+| Deloitte | `--theme deloitte` | Lime `#86BC25` | Lime green + blue | Audit, advisory decks |
 
-Custom themes: drop a JSON file in `~/.chart-skill/themes/` following the format of the built-in themes.
+All themes include light and dark variants. Custom themes: drop a JSON file in `~/.chart-skill/themes/` following the format of the built-in themes in `${CLAUDE_SKILL_DIR}/themes/`.
 
 ## Size Presets
 
