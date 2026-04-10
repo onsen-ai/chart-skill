@@ -11,29 +11,42 @@ All scripts are in `${CLAUDE_SKILL_DIR}/scripts/` and require Node.js 18+.
 
 ## First-Time Setup
 
-Check if `node_modules/` exists in the skill directory:
+**Before running any render command**, check if dependencies are installed:
+
+```bash
+ls ${CLAUDE_SKILL_DIR}/node_modules/vega/package.json
+```
+
 - **If it exists:** Ready to use.
-- **If it doesn't exist:** Tell the user to run the setup wizard:
+- **If it doesn't exist:** Install dependencies by running:
 
-> Run this in your terminal to install dependencies and configure:
-> ```
-> node scripts/setup.mjs
-> ```
+```bash
+cd ${CLAUDE_SKILL_DIR} && npm install --production
+```
 
-Check if `~/.chart-skill/config.json` exists to read default theme/size preferences.
+This installs vega, vega-lite, and js-yaml (~50MB, one-time). No setup wizard needed — the skill works with defaults immediately.
+
+**Optional:** The user can run the interactive setup wizard to configure default theme, size, and output directory:
+
+> ```
+> cd ${CLAUDE_SKILL_DIR} && node scripts/setup.mjs
+> ```
+> (This requires interactive terminal input — you cannot run it directly.)
+
+Check `~/.chart-skill/config.json` for saved preferences. If it doesn't exist, use defaults (theme: onsen, size: desktop, variant: light).
 
 ## Quick Reference
 
 | Task | Command | Key Args |
 |------|---------|----------|
-| **Render chart** | `render.mjs` | `--spec FILE --output PATH` |
-| **Inline YAML** | `render.mjs` | `--yaml 'mark: bar ...' --output PATH` |
-| **Dark variant** | `render.mjs` | `--spec FILE --variant dark` |
-| **Mobile size** | `render.mjs` | `--spec FILE --size mobile` |
-| **All variants** | `render.mjs` | `--spec FILE --all-variants --output-dir DIR` |
-| **Custom theme** | `render.mjs` | `--spec FILE --theme neutral` |
-| **Custom size** | `render.mjs` | `--spec FILE --width 800 --height 500` |
-| **List themes** | `render.mjs` | `--list-themes` |
+| **Render chart** | `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs` | `--spec FILE --output PATH` |
+| **Inline YAML** | `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs` | `--yaml 'mark: bar ...' --output PATH` |
+| **Dark variant** | `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs` | `--spec FILE --variant dark` |
+| **Mobile size** | `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs` | `--spec FILE --size mobile` |
+| **All variants** | `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs` | `--spec FILE --all-variants --output-dir DIR` |
+| **Custom theme** | `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs` | `--spec FILE --theme neutral` |
+| **Custom size** | `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs` | `--spec FILE --width 800 --height 500` |
+| **List themes** | `node ${CLAUDE_SKILL_DIR}/scripts/render.mjs` | `--list-themes` |
 
 ## Workflow for Papers
 

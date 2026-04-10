@@ -13,21 +13,38 @@ graph LR
     C --> D["📄 Your Document"]
 ```
 
+## 📋 Prerequisites
+
+- **Node.js 18+** — check with `node --version`
+- **npm** — comes with Node.js
+
+That's it. No native compilers, system libraries, or other tools needed.
+
 ## 🚀 Quick Start
 
-### 1. Install
+### 1. Install the skill
 
 ```bash
 npx skills add onsen-ai/chart-skill
 ```
 
-### 2. Setup
+### 2. Install dependencies
+
+```bash
+cd <skill-directory> && npm install --production
+```
+
+Installs vega, vega-lite, and js-yaml (~50MB, one-time only).
+
+### 3. (Optional) Configure defaults
 
 ```bash
 node scripts/setup.mjs
 ```
 
-### 3. Render
+Pick your default theme, output directory, and variant. **This is optional** — the skill works immediately with sensible defaults (onsen theme, desktop size, light variant).
+
+### 4. Render
 
 ```bash
 # From a file
