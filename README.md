@@ -314,6 +314,123 @@ Mobile variants automatically:
 
 ---
 
+## 🎯 Design System
+
+The chart styling is opinionated — every default was chosen deliberately to produce clean, readable charts without manual tweaking. Here's what we do and why.
+
+### Typography
+
+| Element | Size (desktop) | Size (mobile) | Weight | Color |
+|---------|---------------|--------------|--------|-------|
+| Chart title | 16px | 22px | 500 (medium) | `text` |
+| Axis labels | 16px | 22px | normal | `textLight` |
+| Axis titles | 16px | 22px | 500 (medium) | `text` |
+| Value labels | 14px | 20px | 500 (medium) | `text` |
+
+All font sizes match the surrounding article body text on desktop. Mobile sizes are ~38% larger to compensate for SVG downscaling on smaller screens.
+
+### Axes
+
+```
+┌─────────────────────────────────────────┐
+│  Title anchored top-left, 10px offset   │
+│                                         │
+│  35 ─────────────────────────────────   │  ← Max 5 Y-axis ticks
+│                                         │     with nice rounding
+│  25 ─────────────────────────────────   │
+│                                         │  ← Solid gridlines (not
+│  15 ─────────────────────────────────   │     dashed), faint color
+│                                         │
+│   5 ─────────────────────────────────   │
+│   0 ─────────────────────────────────   │
+│      Q1       Q2       Q3       Q4      │  ← No X-axis tick marks
+│              (x-axis title)             │     8px label padding
+└─────────────────────────────────────────┘
+```
+
+- **Y-axis**: max 5 ticks, `scale.nice` aligned to tick count so the top tick always sits at the axis end
+- **X-axis**: no tick marks (cleaner), 8px padding between axis line and labels, 12px between labels and axis title
+- **Gridlines**: solid (not dashed), using the theme's `divider` color — subtle but present
+- **Domain lines**: use the theme's `text` color for strong contrast; rendered on top of bar marks via SVG post-processing
+- **Label overlap**: `parity` strategy — skips every other label when they'd overlap (mobile)
+
+### Marks
+
+| Mark | Style | Why |
+|------|-------|-----|
+| **Bar** | Square corners, 1.5px background-colored stroke | Flat, modern look. The stroke creates subtle visual separation between segments without harsh borders |
+| **Line** | 2px stroke with hollow dots (white fill, colored 2px border) | Dots mark individual data points without dominating the line. Hollow style avoids visual heaviness |
+| **Area** | 30% opacity fill with solid border line | Fill shows volume, border line shows the trend clearly |
+| **Point** (scatter) | Solid filled circles, 120 size | Larger dots for better visibility; solid fill since there's no line to compete with |
+
+### Color Hierarchy
+
+```
+┌──────────────────────────────────────┐
+│  text ████████  Titles, domain lines │  ← Highest contrast
+│  textLight ████  Labels, legend text │  ← Secondary
+│  divider ████  Gridlines             │  ← Subtle background
+│  bgGray ████  Bar stroke, dot fill   │  ← Matches container
+│  primaryColor ████  All marks        │  ← Brand accent
+└──────────────────────────────────────┘
+```
+
+The `bgGray` token is used for bar segment borders and line chart dot fills — it matches the chart container background, creating a "cut-out" effect rather than a visible border.
+
+### Value Labels
+
+```
+         12,400
+        ┌──────┐
+        │      │    ← Single-series bars: value above, 6px gap
+        │      │
+        └──────┘
+
+   ○ 8,900          ← Line/area: value above each point, 10px gap
+  / \
+ /   \
+
+        85           ← Stacked bars: aggregate total above the stack
+    ┌──────┐         (individual segments have no labels)
+    │ High │
+    ├──────┤
+    │ Med  │
+    ├──────┤
+    │ Low  │
+    └──────┘
+```
+
+- **Single-series bar/line/area**: automatic value labels with comma formatting (`12,400`)
+- **Stacked bar**: shows aggregate total per stack, individual segments unlabeled
+- **Multi-series line**: no value labels (too cluttered with overlapping lines)
+- **Scatter**: no value labels (dots are the data)
+
+### Legend
+
+- **Position**: bottom, horizontal — doesn't eat into the chart width
+- **Symbols**: 120px size for visibility
+- **Direction**: horizontal row layout
+- **Background**: transparent (no box)
+
+### Responsive Strategy
+
+| Aspect | Desktop (728px) | Mobile (600px) |
+|--------|----------------|----------------|
+| Font sizes | 16px | 22px (~38% larger) |
+| Y-axis title | Shown | Hidden (saves ~40px width) |
+| Value labels | Shown | Shown |
+| Label overlap | All shown | Parity (skip alternating) |
+| SVG scaling | ~1:1 on 728px container | ~53% on 320px screen |
+| Effective text | ~16px | ~12px (22 × 0.53) |
+
+The mobile SVG is intentionally rendered wider than the screen, with proportionally larger text. When the browser scales it down to fit, the text ends up roughly the same apparent size as desktop.
+
+### SVG Post-processing
+
+One non-obvious detail: Vega renders axis domain lines *behind* bar marks in the SVG. For stacked or tall bars, this means the axis disappears behind the bars. The renderer post-processes the SVG to duplicate axis domain lines and insert them *after* the mark groups, so they always paint on top.
+
+---
+
 ## 🔧 CLI Reference
 
 ```
