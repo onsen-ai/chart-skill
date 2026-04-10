@@ -1,5 +1,5 @@
 ---
-name: chart
+name: chart-skill
 description: Generate publication-grade charts and data visualizations from YAML specs. Use whenever the user needs charts, graphs, plots, or data visualizations for markdown documents, papers, reports, or presentations. Renders YAML Vega-Lite specs to SVG with themed styling (colors, fonts, labels, axes). Supports bar, line, area, scatter, stacked, and multi-series charts with automatic value labels. Always use this skill when creating any data visualization or chart image.
 ---
 
@@ -27,6 +27,7 @@ Check if `~/.chart-skill/config.json` exists to read default theme/size preferen
 | Task | Command | Key Args |
 |------|---------|----------|
 | **Render chart** | `render.mjs` | `--spec FILE --output PATH` |
+| **Inline YAML** | `render.mjs` | `--yaml 'mark: bar ...' --output PATH` |
 | **Dark variant** | `render.mjs` | `--spec FILE --variant dark` |
 | **Mobile size** | `render.mjs` | `--spec FILE --size mobile` |
 | **All variants** | `render.mjs` | `--spec FILE --all-variants --output-dir DIR` |

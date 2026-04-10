@@ -5,7 +5,7 @@
  *
  * Usage:
  *   node render.mjs --spec chart.yaml --output chart.svg
- *   node render.mjs --spec chart.yaml --theme neutral --variant dark
+ *   node render.mjs --yaml 'mark: bar ...' --output chart.svg
  *   node render.mjs --spec chart.yaml --all-variants --output-dir ./figures/
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs'
@@ -20,6 +20,7 @@ import { renderSvg, contentHash } from './lib/renderer.mjs'
 const { values: args, positionals } = parseArgs({
   options: {
     spec: { type: 'string' },
+    yaml: { type: 'string' },
     theme: { type: 'string' },
     variant: { type: 'string' },
     size: { type: 'string' },
@@ -42,9 +43,11 @@ chart-skill render — Generate publication-grade charts from YAML specs
 
 Usage:
   node render.mjs --spec <file.yaml> [options]
+  node render.mjs --yaml '<inline yaml>' [options]
 
 Options:
-  --spec PATH          Path to YAML Vega-Lite spec file (required)
+  --spec PATH          Path to YAML Vega-Lite spec file
+  --yaml STRING        Inline YAML spec (alternative to --spec)
   --theme NAME         Theme name (default: from config or "onsen")
   --variant NAME       "light" or "dark" (default: "light")
   --size NAME          "desktop" or "mobile" (default: "desktop")
@@ -56,6 +59,8 @@ Options:
   --list-themes        List available themes and exit
   --quiet              Print only output path(s)
   --help               Show this help
+
+Either --spec or --yaml is required. Use --yaml for inline specs.
 `)
   process.exit(0)
 }
@@ -65,17 +70,26 @@ if (args['list-themes']) {
   process.exit(0)
 }
 
-// Resolve spec path
-const specPath = args.spec || positionals[0]
-if (!specPath) {
-  console.error('Error: --spec <file.yaml> is required')
-  process.exit(1)
-}
+// Resolve spec: file or inline YAML
+let specYaml
+let specLabel // used for output filename when no --output
 
-const resolvedSpec = resolve(specPath)
-if (!existsSync(resolvedSpec)) {
-  console.error(`Error: spec file not found: ${resolvedSpec}`)
-  process.exit(1)
+if (args.yaml) {
+  specYaml = args.yaml
+  specLabel = 'chart'
+} else {
+  const specPath = args.spec || positionals[0]
+  if (!specPath) {
+    console.error('Error: --spec <file.yaml> or --yaml <string> is required')
+    process.exit(1)
+  }
+  const resolvedSpec = resolve(specPath)
+  if (!existsSync(resolvedSpec)) {
+    console.error(`Error: spec file not found: ${resolvedSpec}`)
+    process.exit(1)
+  }
+  specYaml = readFileSync(resolvedSpec, 'utf8')
+  specLabel = basename(specPath).replace(/\.ya?ml$/i, '')
 }
 
 // Load config and theme
@@ -88,12 +102,11 @@ if (args.width) overrides.width = parseInt(args.width, 10)
 if (args.height) overrides.height = parseInt(args.height, 10)
 
 // Parse spec
-const specYaml = readFileSync(resolvedSpec, 'utf8')
 let spec
 try {
   spec = yaml.load(specYaml)
 } catch (err) {
-  console.error(`Error: invalid YAML in ${specPath}: ${err.message}`)
+  console.error(`Error: invalid YAML: ${err.message}`)
   process.exit(1)
 }
 
@@ -128,8 +141,7 @@ for (const { variant, size } of variants) {
     outputPath = resolve(args.output)
   } else {
     const suffix = variants.length > 1 ? `-${size}-${variant}` : ''
-    const specName = basename(specPath, '.yaml').replace(/\.ya?ml$/, '')
-    outputPath = join(outputDir, `${specName}${suffix}.svg`)
+    outputPath = join(outputDir, `${specLabel}${suffix}.svg`)
   }
 
   const dir = resolve(outputPath, '..')
