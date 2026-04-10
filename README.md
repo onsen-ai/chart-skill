@@ -274,22 +274,73 @@ encoding:
 
 ---
 
-## 🎨 Theme Comparison
+## 🎨 Theme Gallery
 
-The same bar chart rendered with different themes:
+9 built-in themes — the same chart rendered in each:
+
+### Bar Charts
 
 <table>
-<tr><td><strong>🔵 Onsen</strong></td><td><strong>⚪ Neutral</strong></td></tr>
 <tr>
-<td><img src="examples/output/bar-vertical-onsen-light.svg" width="400"></td>
-<td><img src="examples/output/bar-vertical-neutral-light.svg" width="400"></td>
+<td align="center"><strong>🔵 Onsen</strong><br><img src="examples/output/bar-vertical-onsen-light.svg" width="280"></td>
+<td align="center"><strong>⚪ Neutral</strong><br><img src="examples/output/bar-vertical-neutral-light.svg" width="280"></td>
+<td align="center"><strong>🔴 Bain</strong><br><img src="examples/output/bar-vertical-bain-light.svg" width="280"></td>
+</tr>
+<tr>
+<td align="center"><strong>🔷 McKinsey</strong><br><img src="examples/output/bar-vertical-mckinsey-light.svg" width="280"></td>
+<td align="center"><strong>🟢 BCG</strong><br><img src="examples/output/bar-vertical-bcg-light.svg" width="280"></td>
+<td align="center"><strong>🌿 Holland & Barrett</strong><br><img src="examples/output/bar-vertical-holland-barrett-light.svg" width="280"></td>
+</tr>
+<tr>
+<td align="center"><strong>📰 Economist</strong><br><img src="examples/output/bar-vertical-economist-light.svg" width="280"></td>
+<td align="center"><strong>📄 FT</strong><br><img src="examples/output/bar-vertical-ft-light.svg" width="280"></td>
+<td align="center"><strong>🟩 Deloitte</strong><br><img src="examples/output/bar-vertical-deloitte-light.svg" width="280"></td>
 </tr>
 </table>
 
-| Theme | Vibe | Best for |
-|-------|------|----------|
-| `onsen` | 🔵 Blue primary, warm & friendly | Product dashboards, blog posts |
-| `neutral` | ⚪ Grayscale, clean & formal | Academic papers, business reports |
+### Multi-Series Lines
+
+<table>
+<tr>
+<td align="center"><strong>🔵 Onsen</strong><br><img src="examples/output/multi-line-onsen-light.svg" width="280"></td>
+<td align="center"><strong>🔴 Bain</strong><br><img src="examples/output/multi-line-bain-light.svg" width="280"></td>
+<td align="center"><strong>🔷 McKinsey</strong><br><img src="examples/output/multi-line-mckinsey-light.svg" width="280"></td>
+</tr>
+<tr>
+<td align="center"><strong>🟢 BCG</strong><br><img src="examples/output/multi-line-bcg-light.svg" width="280"></td>
+<td align="center"><strong>📰 Economist</strong><br><img src="examples/output/multi-line-economist-light.svg" width="280"></td>
+<td align="center"><strong>📄 FT</strong><br><img src="examples/output/multi-line-ft-light.svg" width="280"></td>
+</tr>
+</table>
+
+### Dark Mode
+
+<table>
+<tr>
+<td align="center"><strong>🔵 Onsen</strong><br><img src="examples/output/bar-vertical-onsen-dark.svg" width="280"></td>
+<td align="center"><strong>🔴 Bain</strong><br><img src="examples/output/bar-vertical-bain-dark.svg" width="280"></td>
+<td align="center"><strong>🔷 McKinsey</strong><br><img src="examples/output/bar-vertical-mckinsey-dark.svg" width="280"></td>
+</tr>
+<tr>
+<td align="center"><strong>🟢 BCG</strong><br><img src="examples/output/bar-vertical-bcg-dark.svg" width="280"></td>
+<td align="center"><strong>📰 Economist</strong><br><img src="examples/output/bar-vertical-economist-dark.svg" width="280"></td>
+<td align="center"><strong>📄 FT</strong><br><img src="examples/output/bar-vertical-ft-dark.svg" width="280"></td>
+</tr>
+</table>
+
+### Theme Reference
+
+| Theme | Flag | Primary | Style | Best for |
+|-------|------|---------|-------|----------|
+| Onsen | `--theme onsen` | 🔵 `#4d93e5` | Warm, friendly blue | Product dashboards, blog posts |
+| Neutral | `--theme neutral` | ⚪ `#374151` | Clean grayscale | Academic papers, formal reports |
+| Bain | `--theme bain` | 🔴 `#CC0000` | Bold red + greys | Strategy consulting decks |
+| McKinsey | `--theme mckinsey` | 🔷 `#1c3cdf` | Deep blue | Executive presentations |
+| BCG | `--theme bcg` | 🟢 `#29BA74` | Fresh green | Sustainability, growth reports |
+| Holland & Barrett | `--theme holland-barrett` | 🌿 `#1B5E20` | Deep green + gold | Health, wellness, retail |
+| Economist | `--theme economist` | 📰 `#E3120B` | Red + teal | Data journalism, editorials |
+| FT | `--theme ft` | 📄 `#0D7680` | Teal on salmon | Financial reporting |
+| Deloitte | `--theme deloitte` | 🟩 `#86BC25` | Lime green + blue | Audit, advisory decks |
 
 **Custom themes?** Drop a JSON file in `~/.chart-skill/themes/` — see [`themes/onsen.json`](themes/onsen.json) for the format.
 
@@ -331,28 +382,15 @@ All font sizes match the surrounding article body text on desktop. Mobile sizes 
 
 ### Axes
 
-```
-┌─────────────────────────────────────────┐
-│  Title anchored top-left, 10px offset   │
-│                                         │
-│  35 ─────────────────────────────────   │  ← Max 5 Y-axis ticks
-│                                         │     with nice rounding
-│  25 ─────────────────────────────────   │
-│                                         │  ← Solid gridlines (not
-│  15 ─────────────────────────────────   │     dashed), faint color
-│                                         │
-│   5 ─────────────────────────────────   │
-│   0 ─────────────────────────────────   │
-│      Q1       Q2       Q3       Q4      │  ← No X-axis tick marks
-│              (x-axis title)             │     8px label padding
-└─────────────────────────────────────────┘
-```
-
-- **Y-axis**: max 5 ticks, `scale.nice` aligned to tick count so the top tick always sits at the axis end
-- **X-axis**: no tick marks (cleaner), 8px padding between axis line and labels, 12px between labels and axis title
-- **Gridlines**: solid (not dashed), using the theme's `divider` color — subtle but present
-- **Domain lines**: use the theme's `text` color for strong contrast; rendered on top of bar marks via SVG post-processing
-- **Label overlap**: `parity` strategy — skips every other label when they'd overlap (mobile)
+| Element | Style | Why |
+|---------|-------|-----|
+| **Y-axis ticks** | Max 5, `scale.nice` aligned | Top tick always sits at the axis end |
+| **X-axis ticks** | Hidden | Cleaner look — labels are sufficient |
+| **X-axis label padding** | 8px from axis, 12px to title | Breathing room without wasted space |
+| **Gridlines** | Solid, `divider` color | Subtle but present — dashed lines feel busy |
+| **Domain lines** | `text` color, rendered on top of marks | Strong contrast, visible even behind tall bars |
+| **Label overlap** | `parity` strategy | Skips every other label on mobile when they'd collide |
+| **Chart title** | Top-left, 10px offset | Left-aligned for natural reading flow |
 
 ### Marks
 
@@ -365,45 +403,25 @@ All font sizes match the surrounding article body text on desktop. Mobile sizes 
 
 ### Color Hierarchy
 
-```
-┌──────────────────────────────────────┐
-│  text ████████  Titles, domain lines │  ← Highest contrast
-│  textLight ████  Labels, legend text │  ← Secondary
-│  divider ████  Gridlines             │  ← Subtle background
-│  bgGray ████  Bar stroke, dot fill   │  ← Matches container
-│  primaryColor ████  All marks        │  ← Brand accent
-└──────────────────────────────────────┘
-```
+| Token | Role | Contrast |
+|-------|------|----------|
+| `text` | Titles, axis domain lines | Highest — near black/white |
+| `textLight` | Labels, legend text | Secondary — readable but recedes |
+| `divider` | Gridlines | Subtle — visible but doesn't compete |
+| `bgGray` | Bar stroke, line dot fill | Matches container background |
+| `primaryColor` | All marks (bars, lines, dots) | Brand accent color |
 
-The `bgGray` token is used for bar segment borders and line chart dot fills — it matches the chart container background, creating a "cut-out" effect rather than a visible border.
+The `bgGray` token matches the chart container background, creating a "cut-out" effect for bar segment borders and line chart dot fills rather than a visible contrasting border.
 
 ### Value Labels
 
-```
-         12,400
-        ┌──────┐
-        │      │    ← Single-series bars: value above, 6px gap
-        │      │
-        └──────┘
-
-   ○ 8,900          ← Line/area: value above each point, 10px gap
-  / \
- /   \
-
-        85           ← Stacked bars: aggregate total above the stack
-    ┌──────┐         (individual segments have no labels)
-    │ High │
-    ├──────┤
-    │ Med  │
-    ├──────┤
-    │ Low  │
-    └──────┘
-```
-
-- **Single-series bar/line/area**: automatic value labels with comma formatting (`12,400`)
-- **Stacked bar**: shows aggregate total per stack, individual segments unlabeled
-- **Multi-series line**: no value labels (too cluttered with overlapping lines)
-- **Scatter**: no value labels (dots are the data)
+| Chart type | Labels | Position | Format |
+|------------|--------|----------|--------|
+| **Single-series bar** | Each bar's value | Above (vertical) or right (horizontal), 6px gap | Comma-separated (`12,400`) |
+| **Single-series line/area** | Each data point | Above, 10px gap | Comma-separated |
+| **Stacked bar** | Aggregate total only | Above the full stack | Comma-separated |
+| **Multi-series line** | None | — | Too cluttered with overlapping lines |
+| **Scatter** | None | — | Dots are the data |
 
 ### Legend
 
