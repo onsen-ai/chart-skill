@@ -293,40 +293,25 @@ encoding:
 
 ## 🎨 Theme Gallery
 
-9 built-in themes — the same chart rendered in each:
+9 built-in themes — the same 6-segment stacked bar chart rendered in each, showing the full colour palette:
 
-### Bar Charts
-
-<table>
-<tr>
-<td align="center"><strong>🔵 Onsen</strong><br><img src="examples/output/bar-vertical-onsen-light.svg" width="280"></td>
-<td align="center"><strong>⚪ Neutral</strong><br><img src="examples/output/bar-vertical-neutral-light.svg" width="280"></td>
-<td align="center"><strong>🔴 Bain</strong><br><img src="examples/output/bar-vertical-bain-light.svg" width="280"></td>
-</tr>
-<tr>
-<td align="center"><strong>🔷 McKinsey</strong><br><img src="examples/output/bar-vertical-mckinsey-light.svg" width="280"></td>
-<td align="center"><strong>🟢 BCG</strong><br><img src="examples/output/bar-vertical-bcg-light.svg" width="280"></td>
-<td align="center"><strong>🌿 Holland & Barrett</strong><br><img src="examples/output/bar-vertical-holland-barrett-light.svg" width="280"></td>
-</tr>
-<tr>
-<td align="center"><strong>📰 Economist</strong><br><img src="examples/output/bar-vertical-economist-light.svg" width="280"></td>
-<td align="center"><strong>📄 FT</strong><br><img src="examples/output/bar-vertical-ft-light.svg" width="280"></td>
-<td align="center"><strong>🟩 Deloitte</strong><br><img src="examples/output/bar-vertical-deloitte-light.svg" width="280"></td>
-</tr>
-</table>
-
-### Multi-Series Lines
+### Light Mode
 
 <table>
 <tr>
-<td align="center"><strong>🔵 Onsen</strong><br><img src="examples/output/multi-line-onsen-light.svg" width="280"></td>
-<td align="center"><strong>🔴 Bain</strong><br><img src="examples/output/multi-line-bain-light.svg" width="280"></td>
-<td align="center"><strong>🔷 McKinsey</strong><br><img src="examples/output/multi-line-mckinsey-light.svg" width="280"></td>
+<td align="center"><strong>🔵 Onsen</strong><br><img src="examples/output/theme-demo-onsen-light.svg" width="280"></td>
+<td align="center"><strong>⚪ Neutral</strong><br><img src="examples/output/theme-demo-neutral-light.svg" width="280"></td>
+<td align="center"><strong>🔴 Bain</strong><br><img src="examples/output/theme-demo-bain-light.svg" width="280"></td>
 </tr>
 <tr>
-<td align="center"><strong>🟢 BCG</strong><br><img src="examples/output/multi-line-bcg-light.svg" width="280"></td>
-<td align="center"><strong>📰 Economist</strong><br><img src="examples/output/multi-line-economist-light.svg" width="280"></td>
-<td align="center"><strong>📄 FT</strong><br><img src="examples/output/multi-line-ft-light.svg" width="280"></td>
+<td align="center"><strong>🔷 McKinsey</strong><br><img src="examples/output/theme-demo-mckinsey-light.svg" width="280"></td>
+<td align="center"><strong>🟢 BCG</strong><br><img src="examples/output/theme-demo-bcg-light.svg" width="280"></td>
+<td align="center"><strong>🌿 Holland & Barrett</strong><br><img src="examples/output/theme-demo-holland-barrett-light.svg" width="280"></td>
+</tr>
+<tr>
+<td align="center"><strong>📰 Economist</strong><br><img src="examples/output/theme-demo-economist-light.svg" width="280"></td>
+<td align="center"><strong>📄 FT</strong><br><img src="examples/output/theme-demo-ft-light.svg" width="280"></td>
+<td align="center"><strong>🟩 Deloitte</strong><br><img src="examples/output/theme-demo-deloitte-light.svg" width="280"></td>
 </tr>
 </table>
 
@@ -334,14 +319,19 @@ encoding:
 
 <table>
 <tr>
-<td align="center"><strong>🔵 Onsen</strong><br><img src="examples/output/bar-vertical-onsen-dark.svg" width="280"></td>
-<td align="center"><strong>🔴 Bain</strong><br><img src="examples/output/bar-vertical-bain-dark.svg" width="280"></td>
-<td align="center"><strong>🔷 McKinsey</strong><br><img src="examples/output/bar-vertical-mckinsey-dark.svg" width="280"></td>
+<td align="center"><strong>🔵 Onsen</strong><br><img src="examples/output/theme-demo-onsen-dark.svg" width="280"></td>
+<td align="center"><strong>⚪ Neutral</strong><br><img src="examples/output/theme-demo-neutral-dark.svg" width="280"></td>
+<td align="center"><strong>🔴 Bain</strong><br><img src="examples/output/theme-demo-bain-dark.svg" width="280"></td>
 </tr>
 <tr>
-<td align="center"><strong>🟢 BCG</strong><br><img src="examples/output/bar-vertical-bcg-dark.svg" width="280"></td>
-<td align="center"><strong>📰 Economist</strong><br><img src="examples/output/bar-vertical-economist-dark.svg" width="280"></td>
-<td align="center"><strong>📄 FT</strong><br><img src="examples/output/bar-vertical-ft-dark.svg" width="280"></td>
+<td align="center"><strong>🔷 McKinsey</strong><br><img src="examples/output/theme-demo-mckinsey-dark.svg" width="280"></td>
+<td align="center"><strong>🟢 BCG</strong><br><img src="examples/output/theme-demo-bcg-dark.svg" width="280"></td>
+<td align="center"><strong>🌿 Holland & Barrett</strong><br><img src="examples/output/theme-demo-holland-barrett-dark.svg" width="280"></td>
+</tr>
+<tr>
+<td align="center"><strong>📰 Economist</strong><br><img src="examples/output/theme-demo-economist-dark.svg" width="280"></td>
+<td align="center"><strong>📄 FT</strong><br><img src="examples/output/theme-demo-ft-dark.svg" width="280"></td>
+<td align="center"><strong>🟩 Deloitte</strong><br><img src="examples/output/theme-demo-deloitte-dark.svg" width="280"></td>
 </tr>
 </table>
 
