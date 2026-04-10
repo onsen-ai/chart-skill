@@ -2,7 +2,7 @@
   "name": "holland-barrett",
   "font": "system-ui, -apple-system, sans-serif",
   "primaryColor": "#005335",
-  "categoryPalette": ["#005335", "#DBFF5F", "#003421", "#E8F7C7", "#0a7a4a", "#a8d96c"],
+  "categoryPalette": ["#005335", "#2e8b57", "#003421", "#6aad6a", "#4a7c59", "#8fbc8f"],
   "variants": {
     "light": {
       "text": "#003421",
@@ -11,7 +11,7 @@
       "bgGray": "#f2f8f3"
     },
     "dark": {
-      "text": "#E8F7C7",
+      "text": "#d4e8d8",
       "textLight": "#a0c4a8",
       "divider": "#1a4a2e",
       "bgGray": "#0a2518"
