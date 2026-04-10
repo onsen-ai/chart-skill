@@ -245,7 +245,7 @@ These are applied by default — you don't need to specify them:
 | Bain | `--theme bain` | Red `#CC0000` | Bold red + greys | Strategy consulting decks |
 | McKinsey | `--theme mckinsey` | Blue `#1c3cdf` | Deep blue | Executive presentations |
 | BCG | `--theme bcg` | Green `#29BA74` | Fresh green | Sustainability, growth reports |
-| Holland & Barrett | `--theme holland-barrett` | Dark green `#003535` | H&B green + lime | Health, wellness, retail |
+| Holland & Barrett | `--theme holland-barrett` | Deep green `#005335` | H&B green + lime | Health, wellness, retail |
 | Economist | `--theme economist` | Red `#E3120B` | Red + teal | Data journalism, editorials |
 | FT | `--theme ft` | Teal `#0D7680` | Teal on salmon | Financial reporting |
 | Deloitte | `--theme deloitte` | Lime `#86BC25` | Lime green + blue | Audit, advisory decks |

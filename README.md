@@ -344,7 +344,7 @@ encoding:
 | Bain | `--theme bain` | 🔴 `#CC0000` | Bold red + greys | Strategy consulting decks |
 | McKinsey | `--theme mckinsey` | 🔷 `#1c3cdf` | Deep blue | Executive presentations |
 | BCG | `--theme bcg` | 🟢 `#29BA74` | Fresh green | Sustainability, growth reports |
-| Holland & Barrett | `--theme holland-barrett` | 🌿 `#003535` | H&B dark green + lime | Health, wellness, retail |
+| Holland & Barrett | `--theme holland-barrett` | 🌿 `#005335` | H&B deep green + lime | Health, wellness, retail |
 | Economist | `--theme economist` | 📰 `#E3120B` | Red + teal | Data journalism, editorials |
 | FT | `--theme ft` | 📄 `#0D7680` | Teal on salmon | Financial reporting |
 | Deloitte | `--theme deloitte` | 🟩 `#86BC25` | Lime green + blue | Audit, advisory decks |
